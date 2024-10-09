@@ -1,0 +1,17 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/ln/Desktop/project-2-linux-shell-ChrisChln-main/Main'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000025B8, symSize: 0x2F8 }
+  - { offsetInCU: 0x49, offset: 0x49, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000025B8, symSize: 0x2F8 }
+  - { offsetInCU: 0x11D, offset: 0x11D, size: 0x8, addend: 0x0, symName: _trim, symObjAddr: 0x2F8, symBinAddr: 0x1000028B0, symSize: 0xF0 }
+  - { offsetInCU: 0x152, offset: 0x152, size: 0x8, addend: 0x0, symName: _split, symObjAddr: 0x3E8, symBinAddr: 0x1000029A0, symSize: 0x110 }
+  - { offsetInCU: 0x1B8, offset: 0x1B8, size: 0x8, addend: 0x0, symName: _execute_pipe_commands, symObjAddr: 0x4F8, symBinAddr: 0x100002AB0, symSize: 0x478 }
+  - { offsetInCU: 0x2DA, offset: 0x2DA, size: 0x8, addend: 0x0, symName: _is_builtin_command, symObjAddr: 0x970, symBinAddr: 0x100002F28, symSize: 0xD8 }
+  - { offsetInCU: 0x32C, offset: 0x32C, size: 0x8, addend: 0x0, symName: _handle_builtin_command, symObjAddr: 0xA48, symBinAddr: 0x100003000, symSize: 0x1D4 }
+  - { offsetInCU: 0x37A, offset: 0x37A, size: 0x8, addend: 0x0, symName: _my_grep, symObjAddr: 0xC1C, symBinAddr: 0x1000031D4, symSize: 0x2A0 }
+  - { offsetInCU: 0x423, offset: 0x423, size: 0x8, addend: 0x0, symName: _handle_external_command, symObjAddr: 0xEBC, symBinAddr: 0x100003474, symSize: 0x1CC }
+  - { offsetInCU: 0x4B7, offset: 0x4B7, size: 0x8, addend: 0x0, symName: _find_command_in_path, symObjAddr: 0x1088, symBinAddr: 0x100003640, symSize: 0x200 }
+  - { offsetInCU: 0x555, offset: 0x555, size: 0x8, addend: 0x0, symName: _handle_redirection, symObjAddr: 0x1288, symBinAddr: 0x100003840, symSize: 0x18C }
+  - { offsetInCU: 0x5CE, offset: 0x5CE, size: 0x8, addend: 0x0, symName: _display_help, symObjAddr: 0x1414, symBinAddr: 0x1000039CC, symSize: 0x70 }
+...
