@@ -1,0 +1,125 @@
+Initialize shell:
+    Display welcome message "Welcome to MyShell!"
+
+Shell Main Loop
+    while (true):
+        // --- Display prompt and read user input --- //
+        current_directory = Call getcwd() to get the current directory
+        prompt = current_directory + "$ "
+        Print prompt
+        input = Read user input
+        
+        // --- Trim and validate input --- //
+        Trim leading and trailing whitespace from input
+        If input is empty, continue to next iteration
+        
+        // --- Split input into command and arguments --- //
+        command, arguments = Call split(input)
+        
+        // --- Handle built-in commands or external commands --- //
+        If is_builtin_command(command):
+            handle_builtin_command(command, arguments)
+        Else:
+            handle_external_command(command, arguments)
+
+// --- Built-in Command Handling Functions --- //
+
+function is_builtin_command(command):
+    builtin_commands = {"help", "exit", "pwd", "cd"}
+    return command in builtin_commands
+
+function handle_builtin_command(command, arguments):
+    If command == "help":
+        Print "Available commands: help, exit, pwd, cd"
+    
+    Else If command == "exit":
+        Exit shell
+    
+    Else If command == "pwd":
+        current_directory = Call getcwd()
+        Print current_directory
+    
+    Else If command == "cd":
+        If length of arguments > 0:
+            directory = arguments[0]
+            If directory exists:
+                Call chdir(directory)
+            Else:
+                Print "Error: Directory does not exist"
+        Else:
+            Print "Error: No directory provided"
+
+// --- External Command Handling Function --- //
+
+function handle_external_command(command, arguments):
+    // --- Create a child process --- //
+    pid = Call fork()
+    
+    If pid == 0:
+        // --- Child Process --- //
+        // Prepare argument list for execv
+        argv = [command] + arguments
+        // Execute the external command
+        Call execv(command, argv)
+        
+        // If execv() fails
+        Print "Error: Command execution failed"
+        Call perror("execv")
+        Call exit(1)
+    
+    Else If pid > 0:
+        // --- Parent Process --- //
+        // Wait for the child process to complete
+        status = 0
+        Call waitpid(pid, &status, 0)
+    
+    Else:
+        // --- Fork Failed --- //
+        Print "Error: Fork failed"
+        Call perror("fork")
+
+// --- Split Function --- //
+
+function split(input):
+    // Create a dynamic array to store split results
+    tokens = []
+    // Use strtok() or a similar method to split input by spaces
+    token = Call strtok(input, " ")
+    While token is not NULL:
+        // Remove extra spaces and quotes if needed
+        Trim token
+        // Add token to the tokens array
+        Append token to tokens
+        // Get the next token
+        token = Call strtok(NULL, " ")
+    // Add a NULL element to indicate the end of the argument list
+    Append NULL to tokens
+    return tokens
+
+// --- Future Core Features --- //
+
+// Redirection (to be implemented)
+    // Open files using open()
+    // Redirect input/output using dup2()
+
+// Piping (to be implemented)
+    // Create pipes using pipe()
+    // Manage communication between processes
+
+// Path Resolution (to be implemented)
+    // Search directories in PATH environment variable for the command executable
+
+// --- Makefile --- //
+
+# Makefile to compile the shell program
+
+all: my_shell
+
+my_shell: main.o
+    gcc -o my_shell main.o
+
+main.o: main.c
+    gcc -c main.c
+
+clean:
+    rm -f *.o my_shell
